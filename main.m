@@ -1,4 +1,8 @@
-depth = 8;
+function main(depth) 
+if nargin < 1
+	depth = 6;
+end
+
 
 tau = (sqrt(5) - 1)/2;
 ipi = sqrt(-1) * pi;
@@ -8,5 +12,6 @@ matrices{3} = [(-tau*exp(-ipi/5)) (-i * sqrt(tau) * exp(-ipi / 10)) 0; (-i * sqr
 matrices{2} = inv(matrices{1});
 matrices{4} = inv(matrices{3});
 
-gateSearch(depth, eye(3),{},matrices);
+gateSearch(depth, eye(3),{},matrices)
 
+end

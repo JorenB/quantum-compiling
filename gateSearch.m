@@ -7,7 +7,7 @@ function b = gateSearch(n, gate, path, matrices)
 		currentPath{length(currentPath)+1} = j;
 
 		b{length(b)+1} = currentPath;
-		if n > 0
+		if n > 1 
 			if norm(test - eye(3)) < 0.001
 				%disp('identity: ');
 				%disp(currentPath);

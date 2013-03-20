@@ -1,4 +1,4 @@
-function main(depth) 
+function b = generateGates(depth) 
 if nargin < 1
 	depth = 6;
 end
@@ -12,6 +12,5 @@ matrices{3} = [(-tau*exp(-ipi/5)) (-i * sqrt(tau) * exp(-ipi / 10)) 0; (-i * sqr
 matrices{2} = inv(matrices{1});
 matrices{4} = inv(matrices{3});
 
-gateSearch(depth, eye(3),{},matrices)
-
+b = gateSearch(depth, eye(3),{},matrices);
 end

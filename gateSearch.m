@@ -1,8 +1,7 @@
 %recursive function for computing matrix product in tree up to specific depth.
 %if a previously encountered matrix is calculated, the algorithm exits the branch and backtracks in order to generate new matrices
-function b = gateSearch(depth, current, path, history)
+function b = gateSearch(depth, current, history)
 	b = {};
-	
 	%retrieve base matrices
 	matrices = constants.MATRICES;
 
@@ -12,11 +11,8 @@ function b = gateSearch(depth, current, path, history)
 		% check whether gate already appeared in history
 		c = false;
 		for k = 1:length(history)
-			if norm(test - history{k}) < 0.1 
-				%disp(path);
-				%disp(j);
-				%disp(history{k});
-				c = true;
+			if norm(test-history{k}) < 0.14 
+ 				c = true;
 				break;
 			end
 		end
@@ -28,14 +24,11 @@ function b = gateSearch(depth, current, path, history)
 
 		history{length(history)+1} = test;
 
-		currentPath = path;
-		currentPath{length(currentPath)+1} = j;
-		b{length(b)+1} = currentPath;
-
 		%halt if depth limit has been reached
-		if depth > 1 
-			b = [ b gateSearch(depth-1, test, currentPath, history)];
+		if depth > 0  
+			history = gateSearch(depth-1, test, history);
 		end
 
+		b = history;
 	end
 end

@@ -5,6 +5,6 @@ end
 
 
 s = tic;
-b = gateSearch(depth, eye(3),{}, {});
+b = gateSearch(depth, eye(3), {});
 toc(s)
 end

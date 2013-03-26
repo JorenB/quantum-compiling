@@ -11,7 +11,7 @@ function gates = buildGateNet(depth, tightness, base, collection, net)
 	t = tic;
 	for j = 1:length(base)
         for k = 1:length(collection)
-            candidate = base{j} * collection{k}; 
+            candidate = base{j} * collection{k}{1}; 
 
             % check whether gate already appeared in history
             unique = true;
@@ -25,7 +25,7 @@ function gates = buildGateNet(depth, tightness, base, collection, net)
 
             %candidate matrix is unique so far: add it to the list
             if unique == true
-                new_gates{length(new_gates)+1} = candidate;
+                new_gates{length(new_gates)+1} = {candidate, [int2str(j), collection{k}{2} ]};
                 net{length(net)+1} = candidate;
             end
         end

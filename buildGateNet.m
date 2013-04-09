@@ -17,8 +17,8 @@ function gates = buildGateNet(depth, tightness, base, collection, net)
             unique = true;
 			ln = length(net);
             for l = 1:ln
-				n = norm(candidate-net{l}, 2);
-                if n < tightness
+				n = 2*traceDistance(candidate,net{l});
+                if n < constants.RE
                     unique = false;
                     break;
                 end

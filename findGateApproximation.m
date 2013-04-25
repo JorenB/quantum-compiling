@@ -1,11 +1,11 @@
-function best = findGateApproximation(collection, gate)
+function [gate, word] = findGateApproximation(search, net)
 
 min = 10;
 n = 1;
 
-gate = rotateToSU2(gate);
-for k=1:length(collection)
-	dist = traceDistance(collection{k}{1}(1:2,1:2),gate);
+search = rotateToSU2(search);
+for k=1:length(net{1})
+	dist = norm(net{1}{k}(1:2,1:2)-search);
 
 	if dist < min
 		min = dist;
@@ -14,6 +14,7 @@ for k=1:length(collection)
 
 end
 
-best = collection{n};
+gate = net{1}{n};
+word = net{2}{n};
 
 end

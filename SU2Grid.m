@@ -1,4 +1,4 @@
-function matrices = coverS3withSU2(resolution)
+function matrices = SU2Grid(resolution)
 
 s3 = blot3Sphere(resolution);
 

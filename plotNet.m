@@ -2,7 +2,7 @@ function n = plotNet( net )
 
 v4s = {};
 for k=1:length(net)
-v4s{k} = unitaryTo4Vector(net{k}{1});
+v4s{k} = unitaryTo4Vector(net{k});
 end
 
 x=[];

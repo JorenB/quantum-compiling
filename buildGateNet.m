@@ -1,6 +1,6 @@
 %recursive function for computing matrix product in tree up to specific depth.
 %if a previously encountered matrix is calculated, the algorithm exits the branch and backtracks in order to generate new matrices
-function gates = buildGateNet(depth, tightness, base, collection, net)
+function gates = buildGateNet(depth, base, collection, net)
 	gates = collection;
 	
 	disp('---');
@@ -17,7 +17,8 @@ function gates = buildGateNet(depth, tightness, base, collection, net)
             unique = true;
 			ln = length(net);
             for l = 1:ln
-				n = 2*traceDistance(candidate,net{l});
+				%n = traceDistance(candidate,net{l});
+				n = norm(candidate - net{l});
                 if n < constants.RE
                     unique = false;
                     break;
@@ -36,7 +37,7 @@ function gates = buildGateNet(depth, tightness, base, collection, net)
 
 	%halt if depth limit has been reached
     if depth > 1 && size(new_gates, 2) > 0
-		new_gates = buildGateNet(depth - 1, tightness, base, new_gates, net);
+		new_gates = buildGateNet(depth - 1, base, new_gates, net);
 	end
     
 	gates = [ gates new_gates ];

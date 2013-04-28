@@ -1,26 +1,26 @@
-function tuple = SolovayKitaev(gate, n, collection, rdn)
+function [gate word] = SolovayKitaev(search, n, gDict, rdn)
 
+search = rotateToSU2(search);
 if n == 0
-	tuple = findGateApproximation(collection, gate);
+	[gate word] = findGateApproximation(search, gDict);
 
 else
-	tuple_lower = SolovayKitaev(gate, n-1, collection, rdn);
+	[lGate lWord] = SolovayKitaev(search, n-1, gDict, rdn);
 	
-	u = gate(1:2,1:2);
-	u_lower = tuple_lower{1}(1:2,1:2);
 
-	uulh = u*conj(transpose(u_lower));
-	[v, w] = GCDecompose(uulh, rdn);
+	uulh = search*adj(lGate);
+	[vGate wGate ] = BGCDecompose(uulh);
 
-	v_lower = SolovayKitaev(v{1}, n-1, collection, rdn);
-	w_lower = SolovayKitaev(w{1}, n-1, collection, rdn);
+	[lvGate lvWord] = SolovayKitaev(vGate, n-1, rdn, rdn);
+	[lwGate lwWord] = SolovayKitaev(wGate, n-1, rdn, rdn);
 
 
-	m_un = v_lower{1} * w_lower{1} * conj(transpose(v_lower{1})) * conj(transpose(w_lower{1})) *tuple_lower{1}; 
+	m_un = lvGate * lwGate * adj(lvGate) * adj(lwGate) *lGate; 
 
-	path_n = [v_lower{2} w_lower{2} invertPath(v_lower{2}, 4) invertPath(w_lower{2}, 4) tuple_lower{2}];
+	path_n = [lvWord lwWord invertPath(lvWord, 4) invertPath(lwWord, 4) lWord];
 
-	tuple = {m_un, path_n};
+	gate = m_un;
+	word = path_n;
 
 end
 

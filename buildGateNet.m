@@ -19,7 +19,7 @@ function [total_gates, total_words] = buildGateNet(depth, base, upper_gates, upp
             unique = true;
             for l = 1:length(full_gates)
 				%n = traceDistance(candidate,net{l});
-				n = norm(candidate - full_gates{l});
+				n = traceDistance(candidate, full_gates{l});
                 if n < constants.RE
                     unique = false;
 					candidate;

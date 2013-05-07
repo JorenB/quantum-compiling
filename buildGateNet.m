@@ -1,7 +1,23 @@
 %recursive function for computing matrix product in tree up to specific depth.
-%if a previously encountered matrix is calculated, the algorithm exits the branch and backtracks in order to generate new matrices
+%if a previously encountered matrix is calculated, the algorithm exits the branch and backtracks in order to generate only new matrices
+
+% 'depth' is the maximum tree depth walked
+% 'base' is the base generating set of gates
+% 'upper_gates' is the collection of gates generated in the level above this one
+% 'upper_words' is the collection of words associated with upper_gates
+% 'full_gates' is the complete collection of gates, necessary to check whether a newly generated gate has already been encountered
 function [total_gates, total_words] = buildGateNet(depth, base, upper_gates, upper_words, full_gates)
 
+	if nargin < 3 
+		upper_gates = {eye(2)};
+		upper_words = {''};
+		full_gates = {eye(2)};
+		if nargin < 2
+			base = constants.MATRICES;
+		end				
+	end
+
+	% display progress at every level
 	disp('---');
 	disp(depth);
 	disp(size(upper_gates,2));
@@ -13,16 +29,15 @@ function [total_gates, total_words] = buildGateNet(depth, base, upper_gates, upp
 
 	for j = 1:length(base)
         for k = 1:length(upper_gates)
-            candidate = base{j} * upper_gates{k}; 
+            candidate = rotateToSU2(base{j}) * upper_gates{k}; 
 
             % check whether gate already appeared in history
             unique = true;
             for l = 1:length(full_gates)
-				%n = traceDistance(candidate,net{l});
 				n = traceDistance(candidate, full_gates{l});
+
                 if n < constants.RE
                     unique = false;
-					candidate;
                     break;
                 end
             end
@@ -38,7 +53,7 @@ function [total_gates, total_words] = buildGateNet(depth, base, upper_gates, upp
 	disp(toc(t));
 
 	full_gates = [ full_gates upper_gates ];
-	%halt if depth limit has been reached
+	% if we haven't reached the bottom level, apply the function recursively
     if depth > 1 && size(new_gates, 2) > 0
 		[new_gates new_words] = buildGateNet(depth - 1, base, new_gates, new_words, full_gates);
 	end

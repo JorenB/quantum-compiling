@@ -25,7 +25,7 @@ function x = matToCart3(u)
 
 sx1 = -1 * imag(u(1,2));
 sx2 = real(u(2,1));
-sx3 = 1/2 * imag(u(2,2)-u(1,1));
+sx3 = imag(u(2,2));
 
 costh = 1/2*real(u(1,1)+u(2,2));
 sinth = sqrt(sx1^2 + sx2^2+sx3^2);
@@ -67,28 +67,18 @@ b = matToCart3(xu);
 na = norm(a);
 nb = norm(b);
 
-ab = 0;
+ab = dot(a,b);
 
-for j=1:3
-    ab = ab + a(j)*b(j);
-end
-
-s = [0;0;0];
-
-s(1) = b(2)*a(3) - a(2)*b(3);
-s(2) = a(1)*b(3)-b(1)*a(3);
-s(3) = b(1)*a(2)-b(2)*a(1);
-
+s = cross(b,a);
 ns = norm(s);
 
+% if the cross product is small, u is already a rotation about approximately the x-axis
 if abs(ns) < constants.RE
     S = eye(2);
     
 else
-    for j=1:3
-        s(j) = s(j) * acos(ab/(na*nb)) / ns;
-    end
-    
+	s = acos(ab/(na*nb))/ns * s;
+	
     S = cart3ToMat(s);
 end
 

@@ -1,15 +1,17 @@
 % function for progressively generating better approximations to input gate 'search'. 'n' specifies the maximum number of recursive calls, 'net' is the input gate/word collection and 'rdnet' is a selection from this collection containing only gates 'close' to the identity (saves time in finding approximations to the group commutator)
 function [gate word] = SolovayKitaev(search, n, net, rdnet)
-
 search = rotateToSU2(search);
 if n == 0
 	[gate word] = findGateApproximation(search, net);
 
 else
-	[lGate lWord] = SolovayKitaev(search, n-1, net, rdnet);
-	
 
-	uulh = search*adj(lGate);
+	[lGate lWord] = SolovayKitaev(search, n-1, net, rdnet);
+
+	uulh = search*adj(lGate(1:2,1:2));
+	if traceDistance(uulh,eye(2)) > 0.2
+		disp(traceDistance(uulh,eye(2)));
+	end
 	[vGate wGate ] = BGCDecompose(uulh);
 
 	% pass 'rdnet' instead of 'net' here, as the group commutator matrices will generally be close to the identity (saves a lot of searching time)

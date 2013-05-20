@@ -1,7 +1,7 @@
 classdef constants
 	properties (Constant = true)
 		% rounding error tolerance
-		RE = 0.000000000005;
+		RE = 0.00000000000005;
 
 		I = sqrt(-1);
 		TAU = (sqrt(5) - 1)/2;

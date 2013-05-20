@@ -6,7 +6,7 @@ function [gates words] = selectRDNet(net, gate, r)
 
 	for k=1:length(net{1})
 		m = net{1}{k};
-		trd = traceDistance(m,gate); 
+		trd = traceDistance(m(1:2,1:2),gate); 
 
 		if trd < r && trd > constants.RE
 			gates{length(gates)+1} = net{1}{k};

@@ -5,7 +5,7 @@ n = 1;
 
 search = rotateToSU2(search);
 for k=1:length(gDict{1})
-	dist = traceDistance(gDict{1}{k},search);
+	dist = traceDistance(gDict{1}{k}(1:2,1:2),search);
 
 	if dist < min 
 		min = dist;

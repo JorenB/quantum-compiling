@@ -1,4 +1,4 @@
-function [gate, word] = findGateApproximation(search, gDict)
+function [gate, word] = linearSearch(search, gDict)
 
 min = 10;
 n = 1;

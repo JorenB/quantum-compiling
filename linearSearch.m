@@ -1,11 +1,11 @@
-function [gate, word] = linearSearch(search, gDict)
+function [gate, word] = linearSearch(search, gates, words)
 
 min = 10;
 n = 1;
 
 search = rotateToSU2(search);
-for k=1:length(gDict{1})
-	dist = traceDistance(gDict{1}{k}(1:2,1:2),search);
+for k=1:length(gates)
+	dist = traceDistance(gates{k}(1:2,1:2),search);
 
 	if dist < min 
 		min = dist;
@@ -14,7 +14,7 @@ for k=1:length(gDict{1})
 
 end
 
-gate = gDict{1}{n};
-word = gDict{2}{n};
+gate = gates{n};
+word = words{n};
 
 end

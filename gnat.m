@@ -1,4 +1,4 @@
-function tree = gnat(gates, words, n_nodes)
+function tree = gnat(gates, words, n_branch)
 
 %vectors = {};
 %for j=1:length(net)
@@ -10,11 +10,11 @@ subgates = {};
 subwords = {};
 
 rnds = [];
-while length(rnds) < n_nodes
+while length(rnds) < n_branch
 	    rnds = unique([rnds ceil(length(gates)*rand(1))]);
 end
 
-for j=1:n_nodes
+for j=1:n_branch
 
 	n = rnds(j);
 
@@ -33,7 +33,7 @@ end
 for j=1:length(gates)
 	min = 10;
 
-	for k=1:n_nodes
+	for k=1:n_branch
 		dst = traceDistance(gates{j}(1:2,1:2),nodes{k}{2});
 		%dst = norm(vectors{j}-matToCart4(nodes{k}{1}));
 
@@ -55,9 +55,9 @@ end
 
 
 for j=1:length(nodes)
-	if length(subgates{j}) > n_nodes
+	if length(subgates{j}) > 50
 		nodes{j}{1} = 'branch';
-		nodes{j}{4} = gnat(subgates{j}, subwords{j}, n_nodes);
+		nodes{j}{4} = gnat(subgates{j}, subwords{j}, n_branch);
 	else
 		nodes{j}{1} = 'leaf';
 		nodes{j}{4} = subgates{j};

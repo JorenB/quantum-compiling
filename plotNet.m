@@ -2,7 +2,7 @@ function n = plotNet( net )
 
 v4s = {};
 for k=1:length(net)
-v4s{k} = unitaryTo4Vector(net{k});
+v4s{k} = matToCart4(net{k});
 end
 
 x=[];
@@ -16,7 +16,8 @@ end
 figure(1);
 clf;
 scatter(x,y,4,'fill');
-
+axis([-1.2, 1.2, -1.2, 1.2]);
+axis equal;
 
 x=[];
 y=[];
@@ -28,7 +29,9 @@ y(k) = v4s{k}(4);
 end
 figure(2);
 clf;
-scatter(x,y,4,'fill');
 
+scatter(x,y,4,'fill');
+axis([-1.2, 1.2, -1.2, 1.2]);
+axis equal;
 end
 

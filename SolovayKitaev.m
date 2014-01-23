@@ -2,7 +2,7 @@
 function [gate word] = SolovayKitaev(search, n, net, rdnet)
 search = rotateToSU2(search);
 if n == 0
-	[gate word] = findGateApproximation(search, net);
+	[gate word] = linearSearch(search, net{1}, net{2});
 
 else
 

@@ -14,14 +14,14 @@ classdef constants
 		H = [1 1; 1 -1]/sqrt(2);
 		T = [1 0; 0 exp(constants.IPI/4)];
 		
-		MATRICES = {[exp(-2*1i*pi/3), 0, 0; 0, exp(2*1i*pi/3), 0; 0, 0, exp(1i*pi/3)], [1/2*(-1)^(2/3), 1/sqrt(2)*(-1)^(1/3), -1/2 * (-1)^(2/3); 1/sqrt(2) * (-1)^(1/3), 0, 1/sqrt(2) * (-1)^(1/3); -1/2 * (-1)^(2/3), 1/sqrt(2) * (-1)^(1/3), 1/2 * (-1)^(2/3)], [exp(2*i*pi/3), 0, 0; 0, exp(-2*i*pi/3), 0; 0, 0, exp(-i*pi/3)], [1/2*(-1)^(-2/3), 1/sqrt(2)*(-1)^(-1/3), -1/2 * (-1)^(-2/3); 1/sqrt(2) * (-1)^(-1/3), 0, 1/sqrt(2) * (-1)^(-1/3); -1/2 * (-1)^(-2/3), 1/sqrt(2) * (-1)^(-1/3), 1/2 * (-1)^(-2/3)] };
-		%MATRICES = {[exp(4 * constants.IPI / 5) 0; 0 -exp(-2 * constants.IPI / 5) ] , [(-constants.TAU*exp(-constants.IPI/5)) (-constants.I * sqrt(constants.TAU) * exp(-constants.IPI / 10)) ; (-constants.I * sqrt(constants.TAU) *exp(-constants.IPI/10)) (-constants.TAU)], [exp(-4 * constants.IPI / 5) 0 ; 0 -exp(2 * constants.IPI / 5)], [(-constants.TAU*exp(constants.IPI/5)) (constants.I * sqrt(constants.TAU) * exp(constants.IPI / 10)) ; (constants.I * sqrt(constants.TAU) *exp(constants.IPI/10)) (-constants.TAU)]};
+		%MATRICES = {[exp(-2*1i*pi/3), 0, 0; 0, exp(2*1i*pi/3), 0; 0, 0, exp(1i*pi/3)], [1/2*(-1)^(2/3), 1/sqrt(2)*(-1)^(1/3), -1/2 * (-1)^(2/3); 1/sqrt(2) * (-1)^(1/3), 0, 1/sqrt(2) * (-1)^(1/3); -1/2 * (-1)^(2/3), 1/sqrt(2) * (-1)^(1/3), 1/2 * (-1)^(2/3)], [exp(2*i*pi/3), 0, 0; 0, exp(-2*i*pi/3), 0; 0, 0, exp(-i*pi/3)], [1/2*(-1)^(-2/3), 1/sqrt(2)*(-1)^(-1/3), -1/2 * (-1)^(-2/3); 1/sqrt(2) * (-1)^(-1/3), 0, 1/sqrt(2) * (-1)^(-1/3); -1/2 * (-1)^(-2/3), 1/sqrt(2) * (-1)^(-1/3), 1/2 * (-1)^(-2/3)] };
+		MATRICES = {[exp(4 * constants.IPI / 5) 0; 0 -exp(-2 * constants.IPI / 5) ] , [(-constants.TAU*exp(-constants.IPI/5)) (-constants.I * sqrt(constants.TAU) * exp(-constants.IPI / 10)) ; (-constants.I * sqrt(constants.TAU) *exp(-constants.IPI/10)) (-constants.TAU)], [exp(-4 * constants.IPI / 5) 0 ; 0 -exp(2 * constants.IPI / 5)], [(-constants.TAU*exp(constants.IPI/5)) (constants.I * sqrt(constants.TAU) * exp(constants.IPI / 10)) ; (constants.I * sqrt(constants.TAU) *exp(constants.IPI/10)) (-constants.TAU)]};
 
 		%MATRICES = {[exp(4 * constants.IPI / 5) 0 0; 0 -exp(-2 * constants.IPI / 5) 0; 0 0 -exp(-2 * constants.IPI / 5)], [(-constants.TAU*exp(-constants.IPI/5)) (-constants.I * sqrt(constants.TAU) * exp(-constants.IPI / 10)) 0; (-constants.I * sqrt(constants.TAU) *exp(-constants.IPI/10)) (-constants.TAU) 0; 0 0 (-exp(2*constants.IPI/5))], [exp(-4 * constants.IPI / 5) 0 0; 0 -exp(2 * constants.IPI / 5) 0; 0 0 -exp(2 * constants.IPI / 5)], [(-constants.TAU*exp(constants.IPI/5)) (constants.I * sqrt(constants.TAU) * exp(constants.IPI / 10)) 0; (constants.I * sqrt(constants.TAU) *exp(constants.IPI/10)) (-constants.TAU) 0; 0 0 (-exp(-2*constants.IPI/5))]};
 
 %MATRICES = {[0 1 0; 1 0 0; 0 0 1], [1 0 0; 0 0 1; 0 1 0], [0 0 1; 1 0 0; 0 1 0]};
 
-%     MATRICES = {[exp(4 * constants.IPI / 5) 0 ; 0 -exp(-2 * constants.IPI / 5)], ...
+     %MATRICES = {[exp(4 * constants.IPI / 5) 0 ; 0 -exp(-2 * constants.IPI / 5)], ...
 %         [(-constants.TAU*exp(-constants.IPI/5)) ...
 %         (-constants.I * sqrt(constants.TAU) * exp(-constants.IPI / 10)) ; ...
 %         (-constants.I * sqrt(constants.TAU) *exp(-constants.IPI/10)) ...
